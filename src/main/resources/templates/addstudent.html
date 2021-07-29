@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Student Management</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+			<ul class="nav navbar-nav navbar-right">
+       			 <li><form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form></li>
+   			 </ul>
+                </div>
+            </div>
+        </nav>
+<div align="center">
+    <h1 sec:authorize="hasAnyAuthority('USER')">Course registration</h1>
+    <h1 sec:authorize="hasAnyAuthority('ADMIN')">Edit/Add Student Details</h1>
+    <br />
+     <div class="col-sm-4">
+    <form action="#" th:action="@{/student/save}" th:object="${student}" method="post">
+ 
+      
+ 	<div alight="center">
+            <tr>
+                <label class="form-label" >student Name</label>
+                <td>
+	                <input type="hidden" th:field="*{user_id}" />
+	                <input type="text" th:field="*{name}" class="form-control" placeholder="student Name" />
+                </td>
+            </tr>
+         </div>   
+         
+         
+          <div alight="left">
+            <tr>
+                <label class="form-label" >phone_no</label>
+                
+                <td>
+                 <input type="text" th:field="*{phone_no}" class="form-control" placeholder="phone_no" />
+                </td>
+            </tr>
+         </div>  
+         
+          <div alight="left">
+            <tr>
+                <label class="form-label" >course</label>
+                <td>
+	                
+	                <select name="course" id="course" class="form-control">
+	                  
+	                <option th:each="course:${listcourse}"
+	                 th:value="${course.course_id}"
+	                  th:text="${course.c_name}"
+	                 
+	                >
+	                
+	                </option>
+	                
+	                </select>
+	                
+                </td>
+            </tr>
+         </div>
+         
+         
+         <div alight="left">
+            <tr>
+                <label class="form-label" >email</label>
+                
+                <td>
+                 <input type="text" th:field="*{email}" class="form-control" placeholder="email" />
+                </td>
+            </tr>
+         </div>  
+         
+         
+         
+         <div alight="left">
+            <tr>
+                <label class="form-label" >address</label>
+                <td>
+	                
+	                <input type="text" th:field="*{address}" class="form-control" placeholder="address" />
+                </td>
+            </tr>
+         </div>   
+          <div alight="left">
+            <tr>
+                <label class="form-label" >password</label>
+                <td>
+	                
+	                <input type="text" th:field="*{password}" class="form-control" placeholder="password" />
+                </td>
+            </tr>
+         </div>
+         
+          <div alight="left">
+            <tr>
+                <label class="form-label" >upload_photo</label>
+                <td>
+	                
+	                <input type="text" th:field="*{upload_photo}" class="form-control" placeholder="photo" />
+                </td>
+            </tr>
+         </div>
+          
+         
+ 
+	<br>
+            <tr>
+            <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+ 
+    </form>
+</div>
+</body>
+</html>

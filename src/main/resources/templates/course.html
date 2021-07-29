@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+ <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+ 
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Student Management</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                   
+			<ul class="nav navbar-nav navbar-center">
+       			 <li><form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form></li>
+   			 </ul>
+                </div>
+            </div>
+        </nav>
+<div align = "center">
+	<h2 sec:authorize="hasAnyAuthority('USER')" > List Of Courses </h2>
+	<h2 sec:authorize="hasAnyAuthority('ADMIN')" > course creation </h2>
+	<tr>
+	<div sec:authorize="hasAnyAuthority('ADMIN')" >
+	<h3><a  th:href="@{'/course/addcourse'}">Add new</a>	   
+</div>
+	
+	</tr>
+ 
+	<div class="col-sm-8" align = "center">
+        <div class="panel-body" align = "center" >
+                 
+                 
+  	<table class="table" >
+ 	<thead class="thead-dark">
+        <tr>
+      	     <th>Course ID</th>
+            <th>Course Name</th>
+            <th>description</th>
+            <th>course fee</th>
+            <th>resource</th>
+             <th sec:authorize="hasAnyAuthority('ADMIN')">edit</th>
+             <th sec:authorize="hasAnyAuthority('ADMIN')">delete</th>
+   	</tr>
+  </thead>
+  <tbody>
+      <tr  th:each="course : ${listcourse}">
+		<td th:text="${course.course_id}">Course ID</td>
+		<td th:text="${course.c_name}">Course Name</td>
+		<td th:text="${course.c_desp}">description</td>
+		<td th:text="${course.c_fees}">fees</td>
+		<td th:text="${course.c_resource}">resource</td>
+ 
+		<td sec:authorize="hasAnyAuthority('ADMIN')">
+			<a th:href="@{'/course/edit/' + ${course.course_id}}">     Edit</a>
+		</td >							    
+		<td sec:authorize="hasAnyAuthority('ADMIN')">
+			<a th:href="@{'/course/delete/' + ${course.course_id}}">    Delete</a>
+		</td>		    
+		</tr> 
+  </tbody>
+  </table>                 
+</div>
+</div> 
+ 
+</tr>
+ 
+</tbody>
+</table>
+<div>
+ 
+</body>
+</html>

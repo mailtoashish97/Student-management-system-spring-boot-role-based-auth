@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Student Management</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                        
+                    </ul>
+			<ul class="nav navbar-nav navbar-right">
+       			 <li><form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form></li>
+   			 </ul>
+                </div>
+            </div>
+        </nav>
+<div align="center">
+    <h1>Create New Course</h1>
+    <br />
+     <div class="col-sm-4">
+    <form action="#" th:action="@{/course/save}" th:object="${course}" method="post">
+ 
+      
+ 	<div alight="center">
+            <tr>
+                <label class="form-label" >Course Name</label>
+                <td>
+	                <input type="hidden" th:field="*{course_id}" />
+	                <input type="text" th:field="*{c_name}" class="form-control" placeholder="Course Name" />
+                </td>
+            </tr>
+         </div>   
+         
+         
+          <div alight="left">
+            <tr>
+                <label class="form-label" >description</label>
+                
+                <td>
+                 <input type="text" th:field="*{c_desp}" class="form-control" placeholder="Description" />
+                </td>
+            </tr>
+         </div>  
+         
+         <div alight="left">
+            <tr>
+                <label class="form-label" >fees</label>
+                
+                <td>
+                 <input type="text" th:field="*{c_fees}" class="form-control" placeholder="fees" />
+                </td>
+            </tr>
+         </div>  
+         
+         
+         
+         <div alight="left">
+            <tr>
+                <label class="form-label" >resource</label>
+                <td>
+	                <input type="hidden" th:field="*{course_id}" />
+	                <input type="text" th:field="*{c_resource}" class="form-control" placeholder="resourcee" />
+                </td>
+            </tr>
+         </div>   
+         
+         
+          
+         
+ 
+	<br>
+            <tr>
+            <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+ 
+    </form>
+</div>
+</body>
+</html>
